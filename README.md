@@ -1,73 +1,120 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Assignment Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+🚀 This repository contains the backend code for the assignment. It provides APIs for various functionalities related to the project.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Check the frontend code
 
-## Description
+🔗 [Frontend Repository](https://github.com/itsvanshchavda/Assignment-Frontend)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
+
+- [ ] **Feature 1: Authentication with OTP** ✉️
+
+  - Description: Implement authentication using OTP verification via SMTP.
+
+- [ ] **Feature 2: Signup** ✍️
+
+  - Description: Sign up functionality with proper password testing.
+
+    - Hashing passwords with bcrypt.
+
+    - Generating and verifying OTPs via email using Nodemailer.
+
+    - Token generation and validation with JWT.
+
+- [ ] **Feature 3: Signin** 🔐
+
+  - Description: Sign-in functionality with fast performance.
+
+    - Hashing passwords with bcrypt.
+
+    - Generating and validating JWT tokens.
+
+    - Comparing hashed passwords for authentication.
+
+- [ ] **Feature 4: Logout** 🚪
+
+  - Description: Logout functionality with JWT token blacklisting.
+
+    - Using JWT for token-based authentication.
+
+    - Blacklisting JWT tokens upon logout.
 
 ## Installation
 
-```bash
-$ npm install
-```
+1. Clone the repository: `git clone https://github.com/your-username/assignment-backend.git`
 
-## Running the app
+2. Install the dependencies: `npm install`
 
-```bash
-# development
-$ npm run start
+3. Create a `dist` folder in the root directory.
 
-# watch mode
-$ npm run start:dev
+4. Create a `.env` file in the root directory and add the following configuration:
 
-# production mode
-$ npm run start:prod
-```
+  ```bash
+  MONGO_URI = "mongodb://localhost:27017/assignment"
+  JWT_SECRET = "your_secret"
+  JWT_EXPIR_IN = "1d"
+  ```
 
-## Test
+5. Run the server: `npm start dev`
 
-```bash
-# unit tests
-$ npm run test
+6. Access the APIs: [http://localhost:3000/api](http://localhost:3000/api)
 
-# e2e tests
-$ npm run test:e2e
+Usage
+-----
 
-# test coverage
-$ npm run test:cov
-```
+1. Start the server: `npm start`
+2. Access the APIs:
+  - Swagger Documentation: [http://localhost:3000/api](http://localhost:3000/api)
+  - Sign Up: `POST /auth/signup`
+  - Sign In: `POST /auth/signin`
+  - Logout: `POST /auth/logout`
 
-## Support
+API Documentation
+-----------------
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### API 1: Signup
 
-## Stay in touch
+- Endpoint: `/api/signup`
+- Method: POST
+- Description: Signup the user with email and password and send OTP to the email.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### API 2: Signin
 
-## License
+- Endpoint: `/api/signin`
+- Method: POST
+- Description: Sign in the user with email and password and send JWT token and cookie.
 
-Nest is [MIT licensed](LICENSE).
+### API 3: Logout
+
+- Endpoint: `/api/logout`
+- Method: POST
+- Description: Logout the user and remove the token from the database and remove the cookie from the browser.
+
+Nest.js Implementation Details
+------------------------------
+
+This backend is built using Nest.js, a progressive Node.js framework. Here's how Nest.js is utilized in this project:
+
+- Dependency Injection: Leveraging Nest.js' built-in dependency injection system to manage service dependencies and promote modularity.
+
+- Decorators and Middleware: Utilizing decorators and middleware for request validation, authentication, and logging.
+
+- Error Handling: Implementing global and local error filters to handle exceptions and provide consistent error responses.
+
+- Interceptors: Using interceptors for request and response logging, header manipulation, and data transformation.
+
+- Module-based Architecture: Organizing the codebase into modules to encapsulate related functionality and promote maintainability.
+
+Contributing
+------------
+
+🤝 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+Made By
+-------
+
+- [Vansh Chavda](https://github.com/itsvanshchavda)
+- Linkedin: [Vansh Chavda](https://www.linkedin.com/in/vansh-chavda-0b0b3b1b2/)
+- Email: vanshchavda328@gmail.com
+- Twitter: [@vanshchavda_](https://twitter.com/vanshchavda_)
