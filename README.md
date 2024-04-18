@@ -86,19 +86,19 @@ API Documentation
 
 ### API 1: Signup
 
-- Endpoint: `/api/signup`
+- Endpoint: `/auth/signup`
 - Method: POST
 - Description: Signup the user with email and password and send OTP to the email.
 
 ### API 2: Signin
 
-- Endpoint: `/api/signin`
+- Endpoint: `/auth/signin`
 - Method: POST
 - Description: Sign in the user with email and password and send JWT token and cookie.
 
 ### API 3: Logout
 
-- Endpoint: `/api/logout`
+- Endpoint: `/auth/logout`
 - Method: POST
 - Description: Logout the user and remove the token from the database and remove the cookie from the browser.
 
