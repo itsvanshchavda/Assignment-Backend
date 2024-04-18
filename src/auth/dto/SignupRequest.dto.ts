@@ -29,4 +29,5 @@ export class SignupRequestDto {
             'Your password must be at least 8 characters long, contain at least one number and have a mixture of uppercase and lowercase letters.',
     })
     password: string;
+    otp: number;
 }

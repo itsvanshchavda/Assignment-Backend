@@ -8,13 +8,14 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { SignupRequestDto } from './dto/SignupRequest.dto';
 import * as nodemailer from 'nodemailer';
+import { Response } from 'express';
 
 
 @Injectable()
 export class AuthService {
     constructor(
-        private userService:UserService,
-        private jwtService:JwtService,
+        private userService: UserService,
+        private jwtService: JwtService,
 
         @InjectModel(User.name)
         private readonly userTable: Model<User>,
@@ -57,41 +58,42 @@ export class AuthService {
 
     async signup(body: SignupRequestDto): Promise<any> {
         try {
-            // Check if user already exists
+
             const isExistUser = await this.userTable.findOne({ email: body.email });
             if (isExistUser) {
                 throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
             }
-    
-            // Generate salt and hash password
+
+
             const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(body.password, salt);
-    
+
             // Create new user
             const newUser = await this.userTable.create({
                 fullName: body.fullName,
                 email: body.email,
                 password: hashedPassword,
             });
-    
+
             // Generate OTP
             const otp = Math.floor(100000 + Math.random() * 900000);
-    
+
             // Send OTP via email
             await this.sendEmail(body.email, otp);
-    
-            
-            await this.userTable.updateOne({ email: body.email }, { otp });
-    
-           
+
+
+
+            await this.userTable.updateOne({ email: body.email }, { otp: otp }, { new: true });
+
+          
             const updatedUser = await this.userTable.findOne({ email: body.email });
-    
-            
+
+
             if (!updatedUser) {
                 throw new HttpException('User not found after creation', HttpStatus.INTERNAL_SERVER_ERROR);
             }
-    
-            
+
+
             const { password, ...userData } = updatedUser.toObject();
             return {
                 status: HttpStatus.CREATED,
@@ -102,7 +104,24 @@ export class AuthService {
             throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
         }
     }
-    
+
+
+
+
+    async logout(email: string, res: Response): Promise<any> {
+        try {
+            await this.userTable.updateOne({ email: email }, { otp: null });
+
+            res.clearCookie('token');
+            return {
+                status: HttpStatus.OK,
+                message: 'User logged out successfully',
+            };
+        } catch (error) {
+            throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 
 

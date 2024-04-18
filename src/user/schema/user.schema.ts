@@ -34,6 +34,12 @@ export class User {
     @Exclude()
     resetPasswordExpires: number;
 
+    @Prop({ type: Number, required: false, default: null })
+    @Exclude()
+    otp: number;
+
+
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
