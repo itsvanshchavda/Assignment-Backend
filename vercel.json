@@ -1,16 +1,26 @@
 {
     "version": 2,
     "builds": [
-      {
-        "src": "nest-build-command",
-        "use": "@vercel/node"
-      }
+        {
+            "src": "nest-build-command",
+            "use": "@vercel/node"
+        }
     ],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "nest-function"
-      }
-    ]
-  }
-  
+        {
+            "src": "/api/(.*)",
+            "dest": "nest-function"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/(.*)"
+        }
+    ],
+    "cleanUrls": true
+}
