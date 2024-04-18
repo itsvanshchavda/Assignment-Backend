@@ -1,26 +1,35 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "nest-build-command",
-            "use": "@vercel/node"
-        }
+      {
+        "src": "nest-build-command",
+        "use": "@vercel/node"
+      }
     ],
     "routes": [
-        {
-            "src": "/api/(.*)",
-            "dest": "nest-function"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/index.html"
-        }
+      {
+        "src": "/api/(.*)",
+        "dest": "nest-function"
+      },
+      {
+        "src": "/auth/(.*)",
+        "dest": "nest-function"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
     ],
     "rewrites": [
-        {
-            "source": "/api/(.*)",
-            "destination": "/api/(.*)"
-        }
+      {
+        "source": "/api/(.*)",
+        "destination": "/api/$1"
+      },
+      {
+        "source": "/auth/(.*)",
+        "destination": "/auth/$1"
+      }
     ],
     "cleanUrls": true
-}
+  }
+  
