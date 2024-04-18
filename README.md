@@ -6,6 +6,17 @@
 
 🔗 [Frontend Repository](https://github.com/itsvanshchavda/Assignment-Frontend)
 
+## Technologies Used
+
+- **Nest.js**
+- **MongoDB**
+- **Mongoose**
+- **JWT**
+- **Bcrypt**
+- **Nodemailer**
+- **Swagger**
+
+
 ## Features
 
 - [ ] **Feature 1: Authentication with OTP** ✉️
