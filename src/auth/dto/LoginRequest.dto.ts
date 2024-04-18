@@ -18,7 +18,7 @@ export class LoginRequestDto {
     @IsString()
     @MinLength(6)
     @MaxLength(16)
-    @ApiProperty({ example: 'Bytes@123' })
+    @ApiProperty({ example: 'Test@123' })
     @Matches(/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,16}$/, {
         message:
             'Your password Password should be min 6 and max 16 with one number, one Uppercase, one lowercase and one Special character .',
