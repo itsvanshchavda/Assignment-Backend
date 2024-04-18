@@ -13,8 +13,8 @@ import * as nodemailer from 'nodemailer';
 @Injectable()
 export class AuthService {
     constructor(
-        private userService: UserService,
-        private jwtService: JwtService,
+        private userService:UserService,
+        private jwtService:JwtService,
 
         @InjectModel(User.name)
         private readonly userTable: Model<User>,
