@@ -68,17 +68,17 @@ export class AuthService {
             const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(body.password, salt);
 
-            // Create new user
+           
             const newUser = await this.userTable.create({
                 fullName: body.fullName,
                 email: body.email,
                 password: hashedPassword,
             });
 
-            // Generate OTP
+           
             const otp = Math.floor(100000 + Math.random() * 900000);
 
-            // Send OTP via email
+          
             await this.sendEmail(body.email, otp);
 
 
